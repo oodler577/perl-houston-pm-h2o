@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+
+# EXAMPLE - with Getopt::Long
+
+package local::bin::isitwetyet;
+
+use strict;
+use warnings;
+use Getopt::Long;
+use Util::H2O qw/h2o/;
+
+__PACKAGE_->run(\@ARGV) if not caller;
+
+sub run {
+  my ($self, $ARGV_ref) = @_;
+
+  # init config params
+  my $o = h2o {}, qw/flag1 flag2/;
+
+  # process args with h2o'd hash ref
+  Getopt::Long::GetOptionsFromArray( $ARGV_ref, $o, qw/flag1=s flag2=s/ );
+
+  # now do stuff with:
+  #  $o->flag1
+  #  $o->flag2
+
+}
+
+1;
